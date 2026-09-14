@@ -1,0 +1,3 @@
+word = "programming"
+
+print(word)
