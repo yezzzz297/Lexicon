@@ -1,4 +1,3 @@
-#Slicing
 
 languages = [
     "Python",

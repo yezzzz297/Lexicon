@@ -1,6 +1,5 @@
 
 def create_profile(name, city="Unknown", active=True):
-    """Build a dictionary with a person's details."""
     return {
         "name": name,
         "city": city,

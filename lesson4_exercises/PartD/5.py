@@ -1,6 +1,5 @@
 
 def average_score(students):
-    """Return the average score of all students."""
     if not students:
         return 0
 

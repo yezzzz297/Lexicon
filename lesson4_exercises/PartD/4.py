@@ -1,6 +1,5 @@
 
 def find_student(students, name):
-    """Find a student record by name. Return None if not found."""
     for student in students:
         if student["name"] == name:
             return student

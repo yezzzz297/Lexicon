@@ -1,13 +1,13 @@
 book = {
-    "title": "Love Story",
-    "author": "Anna Green",
-    "pages": 544,
-    "genre": "Romance",
+    "title": "The Kite Runner",
+    "author": "Khaled Hosseini",
+    "pages": 368,
+    "genre": "Historical Fiction",
     "price": 120
 }
 
 book["price"] = 100
-book["publisher"] = "Green Books"
+book["publisher"] = "Riverhead Books"
 
 del book["pages"]
 

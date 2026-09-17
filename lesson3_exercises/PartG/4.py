@@ -1,4 +1,3 @@
-#Longest session without max()
 
 sessions = [
     {"subject": "Python", "minutes": 60},

@@ -1,6 +1,5 @@
 
 def get_larger(a, b):
-    """Return the greater of two values."""
     if a > b:
         return a
     return b

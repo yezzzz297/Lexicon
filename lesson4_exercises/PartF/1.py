@@ -1,6 +1,5 @@
 
 def min_max(values):
-    """Return the smallest and largest numbers in a list."""
     if not values:
         return None, None
 

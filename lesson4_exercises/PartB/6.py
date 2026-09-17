@@ -1,11 +1,9 @@
 
 def add_and_print(a, b):
-    """Print the result but do not return it."""
     print(a + b)
 
 
 def add_and_return(a, b):
-    """Return the result so it can be used later."""
     return a + b
 
 

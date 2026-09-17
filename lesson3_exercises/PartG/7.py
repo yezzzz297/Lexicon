@@ -1,4 +1,3 @@
-# Study sessions
 
 sessions = [
     {"subject": "Python", "minutes": 60},

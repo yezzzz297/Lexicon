@@ -1,4 +1,3 @@
-# Study menu
 
 sessions = [
     {"subject": "Python", "minutes": 60},

@@ -1,6 +1,5 @@
 
 def subtotal(items):
-    """Add up the price of each item."""
     total = 0
     for item in items:
         total += item["price"] * item["quantity"]
@@ -8,12 +7,10 @@ def subtotal(items):
 
 
 def discount(amount, percent):
-    """Calculate a discount value."""
     return amount * (percent / 100)
 
 
 def final_total(items, percent):
-    """Return the price after the discount is applied."""
     sub_total = subtotal(items)
     discount_amount = discount(sub_total, percent)
     return sub_total - discount_amount

@@ -1,4 +1,3 @@
-#Create a list of programming languages
 
 languages = [
     "Python",

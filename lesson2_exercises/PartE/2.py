@@ -1,35 +1,28 @@
-# Part E/2: Access a book title and availability
 
 books = [
     {
-        "title": "Love Story",
-        "author": "Anna Green",
-        "pages": 544,
+        "title": "The Kite Runner",
+        "author": "Khaled Hosseini",
+        "pages": 371,
         "available": True
     },
     {
-        "title": "The Heart",
-        "author": "Robert Brown",
-        "pages": 464,
+        "title": "It Ends with Us",
+        "author": "Colleen Hoover",
+        "pages": 384,
         "available": True
     },
     {
-        "title": "Forever Us",
-        "author": "Al Smith",
-        "pages": 592,
+        "title": "The Housemaid",
+        "author": "Freida McFadden",
+        "pages": 336,
         "available": False
     },
     {
-        "title": "The Last Promise",
-        "author": "David Stone",
-        "pages": 352,
+        "title": "A Thousand Splendid Suns",
+        "author": "Khaled Hosseini",
+        "pages": 432,
         "available": True
-    },
-    {
-        "title": "Love and Light",
-        "author": "Luciano Rose",
-        "pages": 1012,
-        "available": False
     }
 ]
 

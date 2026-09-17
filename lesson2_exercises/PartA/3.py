@@ -1,5 +1,3 @@
-# Lab 3 beginner example
-# Check a password and a student grade
 
 password = "python123"
 
@@ -15,7 +13,7 @@ if grade >= 50:
 else:
     print("Fail")
 
-# List operations for the same beginner example
+
 languages = ["Python", "Java", "C++"]
 languages.append("Ruby")
 print(languages)

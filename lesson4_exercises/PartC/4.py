@@ -1,6 +1,5 @@
 
 def create_order(product, quantity, price):
-    """Return an order dictionary."""
     return {
         "product": product,
         "quantity": quantity,

@@ -1,28 +1,23 @@
 
 def add_numbers(a: int, b: int) -> int:
-    """Return the sum of two integers."""
     return a + b
 
 
 def is_even(number: int) -> bool:
-    """Return True if the number is even."""
     return number % 2 == 0
 
 
 def full_name(first_name: str, last_name: str) -> str:
-    """Combine the first name and last name into one string."""
     return f"{first_name} {last_name}"
 
 
 def average_score(scores: list[float]) -> float:
-    """Return the average of a list of scores."""
     if not scores:
         return 0.0
     return sum(scores) / len(scores)
 
 
 def count_characters(text: str) -> dict[str, int]:
-    """Count how many times each character appears in the string."""
     counts: dict[str, int] = {}
     for char in text:
         counts[char] = counts.get(char, 0) + 1

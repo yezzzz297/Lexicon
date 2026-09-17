@@ -1,6 +1,5 @@
 
 def greet(name, greeting="Hello"):
-    """Greet someone using a default  message."""
     print(f"{greeting}, {name}!")
 
 

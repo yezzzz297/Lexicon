@@ -1,6 +1,6 @@
 skills = {"Python", "SQL", "Git"}
 
-# Add
+
 skills.add("Docker")
 print(skills)
 
