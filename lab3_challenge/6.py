@@ -34,5 +34,6 @@ for flight in flights:
     active_flights.append(flight)
     total_passengers += flight["passengers"]
 
+
 average = total_passengers / len(active_flights) if active_flights else 0
 print("Average passengers for active flights:", average)
