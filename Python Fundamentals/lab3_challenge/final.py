@@ -1,4 +1,4 @@
-# Part 6 - Cancelled flights, missing gates and zero passengers
+# Final challenge - Airport operations report
 
 flights = [
     {"number": "SK142", "destination": "London", "departure": "14:30", "gate": "B4", "passengers": 132, "capacity": 180, "delay": 25, "cancelled": False},
@@ -13,36 +13,51 @@ flights = [
     {"number": "KL560", "destination": "Amsterdam", "departure": "21:05", "gate": "B3", "passengers": 134, "capacity": 180, "delay": 0, "cancelled": False},
 ]
 
+cancelled = 0
+delayed = 0
+on_time = 0
+passengers = 0
+busiest = None
+full_flights = []
+
 for flight in flights:
     if flight["cancelled"]:
-        flight["status"] = "CANCELLED"
-    elif flight["delay"] >= 60:
-        flight["status"] = "SEVERELY DELAYED"
-    elif flight["delay"] >= 20:
-        flight["status"] = "DELAYED"
-    elif flight["delay"] > 0:
-        flight["status"] = "SLIGHT DELAY"
-    else:
-        flight["status"] = "ON TIME"
-
-    if flight["gate"] is None:
-        flight["gate_text"] = "Gate not assigned"
-    else:
-        flight["gate_text"] = "Gate " + flight["gate"]
-
-for number, flight in enumerate(flights, start=1):
-    print(number, flight["number"], flight["destination"], flight["departure"],
-          flight["gate_text"], flight["status"])
-
-total = 0
-count = 0
-for flight in flights:
-    if flight["cancelled"] or flight["passengers"] == 0:
+        cancelled += 1
         continue
-    total += flight["passengers"]
-    count += 1
+    passengers += flight["passengers"]
+    if flight["delay"] > 0:
+        delayed += 1
+    else:
+        on_time += 1
+    if busiest is None or flight["passengers"] > busiest["passengers"]:
+        busiest = flight
+    if flight["passengers"] > flight["capacity"] * 0.8:
+        full_flights.append(flight)
 
-if count > 0:
-    print("Average for active flights with passengers:", total / count)
-else:
-    print("No active flights with passengers.")
+# Cancelled flights count as scheduled but carry zero passengers today.
+average = 0
+if len(flights) > 0:
+    average = passengers / len(flights)
+
+print("AIRPORT OPERATIONS REPORT")
+print("Scheduled flights:", len(flights))
+print("Cancelled:", cancelled)
+print("Delayed:", delayed)
+print("On time:", on_time)
+print("Passengers today:", passengers)
+print("Average per scheduled flight:", round(average, 2))
+if busiest is not None:
+    print("Busiest:", busiest["number"], busiest["destination"], busiest["passengers"])
+print("Flights above 80% capacity:", len(full_flights))
+for flight in full_flights:
+    print(flight["number"], flight["destination"])
+
+# Extra analysis: percentage of flights that were cancelled.
+if len(flights) > 0:
+    print("Cancelled percentage:", cancelled / len(flights) * 100)
+
+# Before: the short answer counted only flight statuses.
+# Now: one loop also calculates passengers, busiest flight and capacity usage.
+# This covers the report without separate loops for each total.
+# Before: cancelled flights could enter passenger calculations.
+# Now: continue skips them, so today's passenger totals describe operating flights.

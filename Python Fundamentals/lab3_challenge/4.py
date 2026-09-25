@@ -1,4 +1,4 @@
-# Part 5 - Search and stop when found
+# Part 4 - Calculate all eight statistics
 
 flights = [
     {"number": "SK142", "destination": "London", "departure": "14:30", "gate": "B4", "passengers": 132, "capacity": 180, "delay": 25, "cancelled": False},
@@ -13,33 +13,38 @@ flights = [
     {"number": "KL560", "destination": "Amsterdam", "departure": "21:05", "gate": "B3", "passengers": 134, "capacity": 180, "delay": 0, "cancelled": False},
 ]
 
+cancelled = 0
+delayed = 0
+on_time = 0
+passengers = 0
+busiest = None
+full_flights = []
+
 for flight in flights:
     if flight["cancelled"]:
-        flight["status"] = "CANCELLED"
-    elif flight["delay"] >= 60:
-        flight["status"] = "SEVERELY DELAYED"
-    elif flight["delay"] >= 20:
-        flight["status"] = "DELAYED"
-    elif flight["delay"] > 0:
-        flight["status"] = "SLIGHT DELAY"
+        cancelled += 1
+        continue
+    passengers += flight["passengers"]
+    if flight["delay"] > 0:
+        delayed += 1
     else:
-        flight["status"] = "ON TIME"
+        on_time += 1
+    if busiest is None or flight["passengers"] > busiest["passengers"]:
+        busiest = flight
+    if flight["passengers"] > flight["capacity"] * 0.8:
+        full_flights.append(flight)
 
-    if flight["gate"] is None:
-        flight["gate_text"] = "Gate not assigned"
-    else:
-        flight["gate_text"] = "Gate " + flight["gate"]
+# Cancelled flights count as scheduled but carry zero passengers today.
+average = 0
+if len(flights) > 0:
+    average = passengers / len(flights)
 
-search = input("Flight number: ").strip().upper()
-found = False
-for flight in flights:
-    if flight["number"] == search:
-        print("Destination:", flight["destination"])
-        print("Departure:", flight["departure"])
-        print(flight["gate_text"])
-        print("Passengers:", flight["passengers"])
-        print("Status:", flight["status"])
-        found = True
-        break
-if not found:
-    print("Flight not found.")
+print("Scheduled flights:", len(flights))
+print("Cancelled:", cancelled)
+print("Delayed:", delayed)
+print("On time:", on_time)
+print("Passengers today:", passengers)
+print("Average per scheduled flight:", round(average, 2))
+if busiest is not None:
+    print("Busiest:", busiest["number"], busiest["destination"], busiest["passengers"])
+print("Flights above 80% capacity:", len(full_flights))

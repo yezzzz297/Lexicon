@@ -1,4 +1,4 @@
-# Part 5 - Search and stop when found
+# Part 9 - Useful break and continue
 
 flights = [
     {"number": "SK142", "destination": "London", "departure": "14:30", "gate": "B4", "passengers": 132, "capacity": 180, "delay": 25, "cancelled": False},
@@ -13,33 +13,18 @@ flights = [
     {"number": "KL560", "destination": "Amsterdam", "departure": "21:05", "gate": "B3", "passengers": 134, "capacity": 180, "delay": 0, "cancelled": False},
 ]
 
+search = input("Find an operating flight: ").strip().upper()
+found = False
+
 for flight in flights:
     if flight["cancelled"]:
-        flight["status"] = "CANCELLED"
-    elif flight["delay"] >= 60:
-        flight["status"] = "SEVERELY DELAYED"
-    elif flight["delay"] >= 20:
-        flight["status"] = "DELAYED"
-    elif flight["delay"] > 0:
-        flight["status"] = "SLIGHT DELAY"
-    else:
-        flight["status"] = "ON TIME"
-
-    if flight["gate"] is None:
-        flight["gate_text"] = "Gate not assigned"
-    else:
-        flight["gate_text"] = "Gate " + flight["gate"]
-
-search = input("Flight number: ").strip().upper()
-found = False
-for flight in flights:
+        continue  # Skip cancelled flights in this operating-flight search.
     if flight["number"] == search:
-        print("Destination:", flight["destination"])
-        print("Departure:", flight["departure"])
-        print(flight["gate_text"])
-        print("Passengers:", flight["passengers"])
-        print("Status:", flight["status"])
+        print(flight)
         found = True
-        break
+        break  # No need to check the remaining flights.
+
 if not found:
-    print("Flight not found.")
+    print("No operating flight found.")
+
+# Part 8 also uses break to end the menu when the user chooses Quit.

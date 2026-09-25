@@ -1,24 +1,35 @@
+# Part 3 - Determine status
 
 flights = [
-    {"flight_number": "SK142", "destination": "London", "delay": 25, "cancelled": False},
-    {"flight_number": "LH231", "destination": "Berlin", "delay": 0, "cancelled": False},
-    {"flight_number": "BA442", "destination": "Manchester", "delay": 90, "cancelled": True},
-    {"flight_number": "AF118", "destination": "Paris", "delay": 10, "cancelled": False},
-    {"flight_number": "EK301", "destination": "Dubai", "delay": 0, "cancelled": False},
+    {"number": "SK142", "destination": "London", "departure": "14:30", "gate": "B4", "passengers": 132, "capacity": 180, "delay": 25, "cancelled": False},
+    {"number": "LH231", "destination": "Berlin", "departure": "15:00", "gate": "A2", "passengers": 96, "capacity": 150, "delay": 0, "cancelled": False},
+    {"number": "BA442", "destination": "Manchester", "departure": "15:20", "gate": "C1", "passengers": 88, "capacity": 140, "delay": 75, "cancelled": True},
+    {"number": "AF118", "destination": "Paris", "departure": "16:10", "gate": "A1", "passengers": 0, "capacity": 120, "delay": 10, "cancelled": False},
+    {"number": "EK301", "destination": "Dubai", "departure": "17:45", "gate": "B2", "passengers": 150, "capacity": 180, "delay": 0, "cancelled": False},
+    {"number": "QR110", "destination": "Doha", "departure": "18:15", "gate": None, "passengers": 42, "capacity": 130, "delay": 30, "cancelled": False},
+    {"number": "LX900", "destination": "Zurich", "departure": "19:00", "gate": "A4", "passengers": 110, "capacity": 170, "delay": 5, "cancelled": False},
+    {"number": "TG440", "destination": "Bangkok", "departure": "19:50", "gate": "B1", "passengers": 182, "capacity": 200, "delay": 0, "cancelled": False},
+    {"number": "AZ210", "destination": "Rome", "departure": "20:40", "gate": "C4", "passengers": 61, "capacity": 140, "delay": 65, "cancelled": False},
+    {"number": "KL560", "destination": "Amsterdam", "departure": "21:05", "gate": "B3", "passengers": 134, "capacity": 180, "delay": 0, "cancelled": False},
 ]
 
-
-def determine_status(flight):
+for flight in flights:
     if flight["cancelled"]:
-        return "CANCELLED"
-    if flight["delay"] >= 60:
-        return "SEVERELY DELAYED"
-    if flight["delay"] >= 20:
-        return "DELAYED"
-    if flight["delay"] >= 1:
-        return "SLIGHT DELAY"
-    return "ON TIME"
+        flight["status"] = "CANCELLED"
+    elif flight["delay"] >= 60:
+        flight["status"] = "SEVERELY DELAYED"
+    elif flight["delay"] >= 20:
+        flight["status"] = "DELAYED"
+    elif flight["delay"] > 0:
+        flight["status"] = "SLIGHT DELAY"
+    else:
+        flight["status"] = "ON TIME"
 
+    if flight["gate"] is None:
+        flight["gate_text"] = "Gate not assigned"
+    else:
+        flight["gate_text"] = "Gate " + flight["gate"]
 
 for flight in flights:
-    print(f"{flight['flight_number']} - {flight['destination']} - {determine_status(flight)}")
+    print(flight["number"], flight["destination"], flight["status"])
+# Cancellation is checked first because it overrides the delay.
