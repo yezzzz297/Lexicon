@@ -4,13 +4,10 @@ from booking import Booking
 from booking_system import BookingSystem
 
 
-room = Room("Grace", 6)
-customer = Customer("Ada", "ada@example.com")
+rooms = [Room("Grace", 6), Room("Ocean", 10), Room("Forest", 4)]
 system = BookingSystem()
 
 print("Meeting Room Booking System")
-print(room)
-print(customer)
 
 date = "2026-10-01"
 print(f"Booking date: {date}")
@@ -24,6 +21,43 @@ while True:
     choice = input("Choose an option: ")
 
     if choice == "1":
+        valid_name = False
+        while valid_name == False:
+            name = input("Customer name: ")
+            for character in name:
+                if character != " " and character != "\t":
+                    valid_name = True
+
+            if valid_name == False:
+                print("Name cannot be empty or only spaces.")
+
+        email = input("Customer email: ")
+        # This is a basic check, not a full email address check.
+        while "@" not in email or "." not in email or " " in email:
+            print("Email must contain @ and a dot, with no spaces.")
+            email = input("Customer email: ")
+
+        customer = Customer(name, email)
+
+        print("Choose a room:")
+        number = 1
+        for room in rooms:
+            print(f"{number}. {room}")
+            number = number + 1
+
+        valid_room = False
+        while valid_room == False:
+            room_number = input("Choose a room number: ")
+            if room_number.isdecimal():
+                room_number = int(room_number)
+                if room_number >= 1 and room_number <= len(rooms):
+                    room = rooms[room_number - 1]
+                    valid_room = True
+                else:
+                    print("Room number not found.")
+            else:
+                print("Please enter a room number using digits.")
+
         start_hour = input("Start hour (0-23): ")
         end_hour = input("End hour (1-24): ")
 
