@@ -2,15 +2,13 @@ from room import Room
 from customer import Customer
 from booking import Booking
 from booking_system import BookingSystem
+from date_check import valid_date
 
 
-rooms = [Room("Grace", 6), Room("Ocean", 10), Room("Forest", 4)]
+rooms = [Room("Grace", 6), Room("Stockholm", 10), Room("Istanbul", 4)]
 system = BookingSystem()
 
 print("Meeting Room Booking System")
-
-date = "2026-10-01"
-print(f"Booking date: {date}")
 
 while True:
     print("\n1. Add booking")
@@ -57,6 +55,11 @@ while True:
                     print("Room number not found.")
             else:
                 print("Please enter a room number using digits.")
+
+        date = input("Booking date (YYYY-MM-DD): ")
+        while valid_date(date) == False:
+            print("Enter a real date in YYYY-MM-DD format, such as 2026-10-01.")
+            date = input("Booking date (YYYY-MM-DD): ")
 
         start_hour = input("Start hour (0-23): ")
         end_hour = input("End hour (1-24): ")
