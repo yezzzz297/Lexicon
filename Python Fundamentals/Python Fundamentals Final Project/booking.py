@@ -5,6 +5,11 @@ class Booking:
         self.date = date
         self.start_hour = start_hour
         self.end_hour = end_hour
+        self.status = "Pending"
+
+    def calculate_cost(self):
+        hours = self.end_hour - self.start_hour
+        return hours * self.room.price_per_hour
 
     def __str__(self):
-        return f"{self.customer.name} booked {self.room.name} on {self.date} from {self.start_hour}:00 to {self.end_hour}:00"
+        return f"{self.customer.name} booked {self.room.name} on {self.date} from {self.start_hour}:00 to {self.end_hour}:00. Total cost: {self.calculate_cost()} SEK. Status: {self.status}"

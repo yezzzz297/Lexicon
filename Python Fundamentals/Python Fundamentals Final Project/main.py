@@ -5,7 +5,8 @@ from booking_system import BookingSystem
 from date_check import valid_date
 
 
-rooms = [Room("Grace", 6), Room("Stockholm", 10), Room("Istanbul", 4)]
+#room prices in (SEK).
+rooms = [Room("Grace", 6, 100), Room("Stockholm", 10, 150), Room("Istanbul", 4, 80)]
 system = BookingSystem()
 
 print("Meeting Room Booking System")
