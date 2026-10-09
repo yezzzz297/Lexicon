@@ -45,7 +45,7 @@ SELECT order_items.order_id, products.name
 FROM order_items
 JOIN products
 ON order_items.product_id = products.product_id
-WHERE products.name = 'Shoes';
+WHERE products.name LIKE '%Shoes%';
 
 
 -- Exercise 6
