@@ -1,37 +1,58 @@
-Lab 5: Python and personal data
+# Lab 5: Python and personal data
 
-My files
+## My files
 
-Exercises 1 to 3 are in python_exercises.py. Exercises 5 to 8 are in shop.py, which is based on the teacher's original file. Exercises 9 to 11 are in Lab_5_Exercises_9-11.sql. The written answers are below. The programs use the webshop.db database.
+- `python_exercises.py`: exercises 1–3.
+- `shop.py`: exercises 5–8, added to the code given.
+- `Lab_5_Exercises_9-11.sql`: exercises 9–11.
+- This file: answers to exercises 4 and 12, and an explanation of exercise 7.
+- `webshop.db`: the database used by the programs.
 
-How to run the Python exercises
+## How to run the Python files
 
-Close the database in DB Browser first. Open the terminal in VS Code from the Class_Exercise folder. To run exercises 1 to 3, enter this command:
+Close the database in DB Browser first. In the VS Code terminal, start from
+the `Class_Exercise` folder and run:
 
+```sh
 python3 Databases/Lab_5/python_exercises.py
+```
 
-The program shows the customers, asks for a maximum price, and asks for a category. Enter Shoes, Clothing, or Accessories with a capital letter.
+This shows the customers, asks for a maximum price, and then asks for a
+category. For the category, type `Shoes`, `Clothing`, or `Accessories` with
+a capital letter.
 
-To run the shop program, enter this command:
+To open the shop menu, run:
 
+```sh
 python3 Databases/Lab_5/shop.py
+```
 
-Choose option 4 to change stock, option 5 to see an order's receipt, or option 6 to see the three products with the most units ordered. Choose 0 to quit. Adding a product or changing stock saves the change in the database. The top three results include items from cancelled orders.
+- Option 4 changes how many items of a product are in stock.
+- Option 5 shows the products and total price for an order.
+- Option 6 shows the three products with the most units ordered.
+- Option 0 closes the program.
 
-How to run the SQL exercises
+Adding a product or changing stock saves the change in `webshop.db`.
+The top-three query counts all order items, including cancelled orders.
 
-Open webshop.db from the Databases/Lab_5 folder in DB Browser. Run exercises 9 to 11 one at a time in Execute SQL. For exercise 11, create the view once, then run the SELECT statement below it to see the customers.
 
-When finished, click Revert Changes as the worksheet asks. This undoes the database changes. The saved SQL file still contains the answers.
+## Exercise 4
 
-Exercise 4
+Using an f-string puts the user's input straight into the SQL command.
+Someone could type SQL code and change what the command does.
+Using `?` keeps the input separate, so SQLite reads it as a value, not as
+part of the SQL command.
 
-An f-string puts the user's input directly into the SQL command. Someone could type SQL code that changes what the command does. A question mark placeholder keeps the input separate, so SQLite treats it as a value instead of SQL code.
+## Exercise 7
 
-Exercise 7
+If the user types `abc` as the price, Python cannot turn it into a number.
+This causes a `ValueError`, and the original program stops.
+I used `try/except` to show a message and return to the menu instead.
+No product is added when the price is invalid.
 
-If the user types abc as the price, Python cannot change it into a number. This causes a ValueError and stops the original program. I used try and except to show a message and return to the menu without adding a product.
+## Exercise 12
 
-Exercise 12
+I would ask why the shop needs a birth date, because “just in case” is not
+a clear reason to collect it. If the shop does not need it, I would leave
+it out to avoid collecting extra personal information.
 
-I would ask why the shop needs a birth date, because just in case is not a clear reason to collect it. If the shop does not need it, I would leave it out to avoid collecting extra personal information.
