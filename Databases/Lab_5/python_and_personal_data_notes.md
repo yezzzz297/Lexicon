@@ -35,6 +35,14 @@ python3 Databases/Lab_5/shop.py
 Adding a product or changing stock saves the change in `webshop.db`.
 The top-three query counts all order items, including cancelled orders.
 
+## How to run the SQL exercises
+
+Open `Databases/Lab_5/webshop.db` in DB Browser. Use the Execute SQL tab to
+run exercises 9, 10, and 11 one at a time. For exercise 11, run `CREATE VIEW`
+once, then run `SELECT * FROM customer_overview;` to see the result.
+
+When finished, click **Revert Changes**, as the worksheet asks. This undoes
+the database changes but keeps the code in the saved SQL file.
 
 ## Exercise 4
 
@@ -55,4 +63,3 @@ No product is added when the price is invalid.
 I would ask why the shop needs a birth date, because “just in case” is not
 a clear reason to collect it. If the shop does not need it, I would leave
 it out to avoid collecting extra personal information.
-
