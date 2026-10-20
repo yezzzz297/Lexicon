@@ -1,22 +1,19 @@
-
 import requests
 
 
-def get_json(url, params=None, headers=None, timeout=10):
+def get_json(url, params=None, headers=None, timeout=5):
     try:
-        response = requests.get(
-            url, params=params, headers=headers, timeout=timeout
-        )
+        response = requests.get(url, params=params, headers=headers, timeout=timeout)
         response.raise_for_status()
         return response.json()
     except requests.exceptions.Timeout:
-        print("The request timed out. Please try again.")
+        print("The request took too long")
     except requests.exceptions.ConnectionError:
-        print("Could not connect. Check the address and your internet connection.")
+        print("Could not connect to the server")
     except requests.exceptions.HTTPError as error:
-        print(f"The server returned HTTP {error.response.status_code}.")
+        print(f"The server said no: {error.response.status_code}")
     except requests.exceptions.JSONDecodeError:
-        print("The server did not return valid JSON.")
-    except requests.exceptions.RequestException:
-        print("The request failed. Check the URL and try again.")
+        print("The answer was not JSON")
+    except requests.exceptions.RequestException as error:
+        print(f"Something else went wrong: {type(error).__name__}")
     return None
